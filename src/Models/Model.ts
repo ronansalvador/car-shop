@@ -20,6 +20,6 @@ export default abstract class MongoModel<T> {
   }
 
   public async findById(id: string): Promise<T | null> {
-    return this.model.findOne({ id });
+    return this.model.findOne({ _id: id });
   }
 }
