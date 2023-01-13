@@ -1,7 +1,11 @@
 import { Router } from 'express';
+import CarController from '../Controllers/CarsController';
 
-const route = Router();
+const routes = Router();
 
-route.get('/', (req, res) => res.status(200).json({ message: 'teste' }));
+routes.post(
+  '/cars',
+  (req, res) => new CarController(req, res).create(),
+);
 
-export default route;
+export default routes;
