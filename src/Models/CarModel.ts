@@ -12,6 +12,11 @@ export default class CarModel extends MongoModel<ICar> {
       buyValue: { type: Number, required: true },
       doorsQty: { type: Number, required: true },
       seatsQty: { type: Number, required: true },
+    }, {
+      toJSON: {
+        virtuals: true,
+        versionKey: false,
+      },
     });
 
     super(schema, 'Car');
