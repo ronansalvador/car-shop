@@ -8,9 +8,6 @@ export default function ErrorCatalog(
   next: NextFunction,
 ) {
   const { message, code } = errorIdentify(error.message);
-  console.log('chegou no erro');
-  console.log(message, code);
-  
   res.status(code).json({ message });
   next();
 }

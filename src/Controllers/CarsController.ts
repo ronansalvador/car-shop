@@ -32,13 +32,9 @@ export default class CarsController {
     const { id } = this.req.params;
 
     try {
-      const car = await this.service.findById(id);
-      console.log('try');
-      
+      const car = await this.service.findById(id);      
       return this.res.status(200).json(car);
-    } catch (e) {
-      console.log('catch');
-      
+    } catch (e) {      
       this.next(e);
     }
   }
