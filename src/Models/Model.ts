@@ -22,4 +22,8 @@ export default abstract class MongoModel<T> {
   public async findById(id: string): Promise<T | null> {
     return this.model.findOne({ _id: id });
   }
+
+  public async update(_id: string, obj: Partial<T>): Promise<T | null> {
+    return this.model.findByIdAndUpdate(_id, obj, { new: true });
+  }
 }

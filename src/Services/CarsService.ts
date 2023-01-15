@@ -14,7 +14,7 @@ export default class CarService {
     return new Car(car);
   }
 
-  private static validateCarId(id: string): void {
+  static validateCarId(id: string): void {
     if (id.length !== 24) {
       throw new Error('Invalid mongo id');
     }
@@ -38,5 +38,17 @@ export default class CarService {
 
     const domainCar = CarService.createCarDomain(car);
     return domainCar;
+  }
+
+  private async validate(id: string): Promise<void> {
+    await this.findById(id);
+  }
+
+  public async update(id: string, obj: ICar): Promise<Car> {
+    await CarService.validateCarId(id);
+    await this.validate(id);
+    await this.CarModel.update(id, obj);
+
+    return this.findById(id);
   }
 }
