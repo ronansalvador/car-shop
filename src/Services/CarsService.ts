@@ -1,10 +1,10 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
-import MongoModel from '../Models/AbstractODM';
+import AbstractODM from '../Models/AbstractODM';
 import CarModel from '../Models/CarModel';
 
 export default class CarService {
-  private CarModel: MongoModel<ICar>;
+  private CarModel: AbstractODM<ICar>;
 
   constructor(Model = CarModel) {
     this.CarModel = new Model();
