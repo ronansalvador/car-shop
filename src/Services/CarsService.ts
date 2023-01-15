@@ -1,6 +1,6 @@
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
-import MongoModel from '../Models/Model';
+import MongoModel from '../Models/AbstractODM';
 import CarModel from '../Models/CarModel';
 
 export default class CarService {
