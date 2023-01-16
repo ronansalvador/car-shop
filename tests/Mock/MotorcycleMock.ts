@@ -1,7 +1,9 @@
 import IMotorcycle from '../../src/Interfaces/IMotorcycle';
 
+const moto1 = 'Honda Cb 600f Hornet';
+
 const createMotorcycle: IMotorcycle = {
-  model: 'Honda Cb 600f Hornet',
+  model: moto1,
   year: 2005,
   color: 'Yellow',
   status: true,
@@ -18,7 +20,7 @@ const createdMotorcycle = {
 const motorcycleMock = [
   {
     id: '63c40ae5c3608a04fca388ae',
-    model: 'Honda Cb 600f Hornet',
+    model: moto1,
     year: 2005,
     color: 'Yellow',
     status: true,
@@ -38,4 +40,19 @@ const motorcycleMock = [
   },
 ];
 
-export { createMotorcycle, createdMotorcycle, motorcycleMock };
+const motoUpdated: IMotorcycle = {
+  model: moto1,
+  year: 2020,
+  color: 'Black',
+  status: true,
+  buyValue: 50.000,
+  category: 'Street',
+  engineCapacity: 600,
+};
+
+const updatedMoto = {
+  ...motoUpdated,
+  id: '63c1d0fcd07bd503590aa8df',
+};
+
+export { createMotorcycle, createdMotorcycle, motorcycleMock, updatedMoto, motoUpdated };

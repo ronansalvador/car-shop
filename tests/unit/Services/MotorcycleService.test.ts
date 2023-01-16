@@ -2,7 +2,8 @@ import { expect } from 'chai';
 import { Model } from 'mongoose';
 import sinon from 'sinon';
 import MotorcycleService from '../../../src/Services/MotorcycleService';
-import { createMotorcycle, createdMotorcycle, motorcycleMock } from '../../Mock/MotorcycleMock';
+import { createMotorcycle,
+  createdMotorcycle, motorcycleMock, updatedMoto, motoUpdated } from '../../Mock/MotorcycleMock';
 
 describe('Testes MotorcycleService', function () {
   const motorcycleService = new MotorcycleService();
@@ -68,5 +69,14 @@ describe('Testes MotorcycleService', function () {
     } catch (err) {
       expect((err as Error).message).to.be.equal('Invalid mongo id');
     }
+  });
+
+  it('Verifica se é possivel atualizar uma moto', async function () {
+    sinon.stub(Model, 'findOne').resolves(updatedMoto);
+    sinon.stub(Model, 'findOneAndUpdate').resolves();
+
+    const service = new MotorcycleService();
+    const car = await service.update(createdMotorcycle.id, motoUpdated);
+    expect(car).to.be.deep.equal(updatedMoto);
   });
 });
