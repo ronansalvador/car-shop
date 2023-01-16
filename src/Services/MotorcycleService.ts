@@ -20,7 +20,7 @@ export default class MotorcycleService {
     return DMotorcycle;
   }
 
-  static validateCarId(id: string): void {
+  static validateId(id: string): void {
     if (id.length !== 24) {
       throw new Error('Invalid mongo id');
     }
@@ -31,12 +31,24 @@ export default class MotorcycleService {
   }
 
   public async findById(id: string): Promise<Motorcycle> {
-    MotorcycleService.validateCarId(id);
+    MotorcycleService.validateId(id);
     const motorcycle = await this.MotorcycleModel.findById(id);
 
     if (motorcycle === null) throw new Error('Motorcycle not found');
 
     const domainMotorcycle = MotorcycleService.createDomain(motorcycle);
     return domainMotorcycle;
+  }
+
+  private async validate(id: string): Promise<void> {
+    await this.findById(id);
+  }
+
+  public async update(id: string, obj: IMotorcycle): Promise<Motorcycle> {
+    await MotorcycleService.validateId(id);
+    await this.validate(id);
+    await this.MotorcycleModel.update(id, obj);
+
+    return this.findById(id);
   }
 }
