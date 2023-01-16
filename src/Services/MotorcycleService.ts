@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import Motorcycle from '../Domains/Motorcycle';
 import IMotorcycle from '../Interfaces/IMotorcycle';
 import AbstractODM from '../Models/AbstractODM';
@@ -21,7 +22,7 @@ export default class MotorcycleService {
   }
 
   static validateId(id: string): void {
-    if (id.length !== 24) {
+    if (!isValidObjectId(id)) {
       throw new Error('Invalid mongo id');
     }
   }

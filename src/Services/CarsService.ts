@@ -1,3 +1,4 @@
+import { isValidObjectId } from 'mongoose';
 import Car from '../Domains/Car';
 import ICar from '../Interfaces/ICar';
 import AbstractODM from '../Models/AbstractODM';
@@ -15,7 +16,7 @@ export default class CarService {
   }
 
   static validateCarId(id: string): void {
-    if (id.length !== 24) {
+    if (!isValidObjectId(id)) {
       throw new Error('Invalid mongo id');
     }
   }
